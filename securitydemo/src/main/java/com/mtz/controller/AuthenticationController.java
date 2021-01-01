@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -38,7 +39,9 @@ public class AuthenticationController {
         if(!StringUtils.hasLength(token)) {
             return CommonResult.validateFailed("用户名或密码错误");
         }
-        return CommonResult.success(token);
+        Map<String, Object> map = new HashMap<>();
+        map.put("token", token);
+        return CommonResult.success(map);
     }
 
     @PostMapping("/register")
